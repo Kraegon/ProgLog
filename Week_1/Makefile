@@ -1,3 +1,3 @@
 CFLAGS=-Wall
 
-all: Main.o
+all: Exercise_1/main.o
