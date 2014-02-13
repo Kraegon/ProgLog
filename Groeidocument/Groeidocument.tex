@@ -1,11 +1,12 @@
 \documentclass[10pt,a4paper]{report}
 \usepackage[latin1]{inputenc}
 \usepackage[top=2cm,bottom=4cm,left=1.5cm,right=3cm,asymmetric]{geometry}
-\usepackage[dutch]{babel}
+\usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{xcolor}
 \usepackage{amsfonts}
-\setcounter{paragraph}{4}
+\usepackage{enumerate}
 \usepackage{amssymb}
 \lstset { 
     language=C,
@@ -13,16 +14,81 @@
     breaklines=true,  
     backgroundcolor=\color{black!5},
     basicstyle=\footnotesize,
-    commentstyle=\color{mygreen},
+    commentstyle=\color{teal},
     numberstyle=\tiny\color{mygray},
     rulecolor=\color{black},
     keywordstyle=\color{blue},
 }
-\author{Julian West \\ \& \\ Jim van Abkoude \\ ~~~~\\ Opdrachten week 1 \\ Diederich Kroeske}
+\author{Julian G. West \\ \& \\ Jim van Abkoude \\ 23TI2A5 \\ ~~~~\\ Groeidocument \\ Diederich Kroeske}
 \title{Programmeerbare Logica}
 \begin{document}
 \maketitle
 \tableofcontents
-\chapter{Week 1}
-\paragraph{Pointers}
+\chapter*{Week 1}
+\setcounter{section}{-1}
+\setcounter{chapter}{5}
+\section{}
+\begin{enumerate}[(a)]
+\item \textbf{Wat is de uitvoer van onderstaand programma? Geef voor elke printf-regel aan welke wat de betekenis is van de waarde die wordt afgedrukt en ook de feitelijke waarde.}
+\\
+\begin{lstlisting}
+	int k =47, *p = &k; //Allocate 47 to ' pointee' k and set pointer p to point towards k's address.
+
+	printf("This is pointer &p: %p \n",&p);   	//Memory address of pointer p (Where p is)
+	printf("This is pointer p: %p \n",p);     	//The contents of p (What p points to)
+	printf("This is pointer &k: %p \n",&k);   	//The address of k (Same as above)
+	printf("This is decimal *p: %d \n",*p);   	//Decimal representation of p's contents (k)
+	printf("This is decimal k: %d \n",k);		//Decimal representation of k
+
+	*p = 87;									//Assigned value 87 to location of pointer p -> k is now 87
+
+	printf("This is decimal *p: %d \n",*p);		//Decimal representation of p's contents (now 87)
+	printf("This is decimal k: %d \n",k);		//Decimal representation of k (also now 87)
+	printf("This is decimal **&p: %d \n",**&p);	//Decimal representation of the contents of a pointer pointing to a pointer pointing to the address of pointer p.
+
+	return 0;
+\end{lstlisting}
+
+\item \textbf{Vergelijk de werking van onderstaande code fragmenten. Is de functionaliteit gelijk of 
+verschillend? Licht je antwoord toe door de stappen uit te schrijven.}
+\begin{lstlisting}
+int k, *p;
+p = &k;
+*p = 87;
+\end{lstlisting}
+\begin{lstlisting}
+int k, 
+*p = &k;
+*p = 87;
+\end{lstlisting}
+In het geval van deze twee fragmenten zak int k worden geinitialiseerd en vervolgens pointer p op het adres van k. Vervolgens kennen we 87 toe aan de pointer p. Allebij de fragementen zullen dit hetzelfde doen.
+\newpage
+\item \textbf{Verklaar de werking van de volgende functie. Wat valt je op met oog op pointers als je het gebruik van scanf met gebruik van printf?}
+\begin{lstlisting}
+int getInput(void) {
+	int k;
+	printf("An int please. \n>>\t");
+	scanf("%d",&k);
+	return k;
+}
+\end{lstlisting}
+Het opvallende aan het gebruik van pointers in scanf is dat er een assign word gedaan naar het adres van \textit{k}, inplaats van een directe toekenning. (Directe toekenning veroorzaakt segmentation fault omdat \textit{k} nooit wordt toegekent.) 
+\end{enumerate}
+\section{}
+\begin{enumerate}[(a)]
+\item \textbf{Zoek de nodige string lib-functies op en bestudeer ze.
+Maak gebruik van de pointer naar string en verander het gegeven programma in stapjes zodanig dat: 
+de lengte van de string afgedrukt wordt.
+De *groet gevuld wordt met de tekst: "Hoi, hoe gaat het"
+De *groet aangevuld wordt met de tekst " met jou?"
+Het aantal geheugenplaatsen voor "groet" voldoende groot is voor de vorige opdracht.}
+\\
+Answer
+\newpage
+\chapter*{Week 2}
+
+Uh oh
+
+
+\end{enumerate}
 \end{document}
