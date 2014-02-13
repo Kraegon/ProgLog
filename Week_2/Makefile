@@ -1,4 +1,4 @@
-CFLAGS=-Wall
+CFLAGS=-Wall -O3
 
 CC=clang
 
@@ -14,4 +14,4 @@ llist.o:
 	   		$(CC) -c Exercise_1/llist.c -o Exercise_1/llist.o
 
 clean: 
-			rm Exercise_1/main.o Exercise_1/llist.o Exercise_1/Exercise_1
+			find . -name "*.o" -exec rm {} \;

@@ -77,4 +77,52 @@ void llist_remove(char* item)
 	}
 }
 
+void llist_clear()
+{
+	if(cursor==NULL){printf("The linked list is empty\n"); return;}
+	struct node *tempcursor = getfirstnode();
+	while(1)
+	{
+		if(tempcursor->next!=NULL)
+		{
+			node* p = tempcursor->next;
+			free(tempcursor);
+			tempcursor = p;
+		}
+		else { break; }
+	}
+	cursor = NULL;
 
+}
+
+char llist_excist(char* item)
+{
+	if(cursor==NULL){return 0;}
+	struct node *tempcursor = getfirstnode();
+	while(1)
+	{
+		if (strcmp(tempcursor->item, item) == 0)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int llist_nrItems()
+{
+	if(cursor==NULL){return 0;}
+	struct node *tempcursor = getfirstnode();
+	int cnt = 0;
+	while(1)
+	{
+		++cnt;
+		if(tempcursor->next!=NULL)
+		{
+			tempcursor = tempcursor->next;
+		}
+		else { break; }
+	}
+	return cnt;
+
+}
